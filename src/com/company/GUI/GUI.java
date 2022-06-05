@@ -1,5 +1,7 @@
 package com.company.GUI;
 
+import com.company.Game.InputHandler;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
@@ -14,7 +16,7 @@ public class GUI {
         frame = new JFrame("Snake");
         frame.setVisible(true);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        frame.setSize(((17 * 30) + (17 * 5)), (((17 * 30) + (17 * 5)) + 50));
+        frame.setSize(((17 * 30) + (17 * 5)), ((17 * 30) + (17 * 5)));
 
         labelList = new ArrayList<>();
 
@@ -37,8 +39,15 @@ public class GUI {
         text.setPreferredSize(new Dimension(frame.getWidth(), 50));
 
         gameInformation.add(text);
+        frame.addKeyListener(new InputHandler());
         frame.add(BorderLayout.CENTER, gameArea);
-        frame.repaint();
         frame.add(BorderLayout.NORTH, gameInformation);
+        frame.setSize(((17 * 30) + (17 * 5)), (((17 * 30) + (17 * 5)) + 50));
+    }
+
+    public static void refresh() {
+        for (Label label : labelList) {
+            label.refresh();
+        }
     }
 }

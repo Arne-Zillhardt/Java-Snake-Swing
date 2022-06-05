@@ -29,4 +29,17 @@ public class Label extends java.awt.Label {
             this.setBackground(Color.WHITE);
         }
     }
+
+    public static Label getLabel(int x, int y) {
+        Label label = new Label(0, 0);
+
+        for (Label lab : GUI.labelList) {
+            if (lab.posX == x && lab.posY == y) {
+                label = lab;
+                break;
+            }
+        }
+
+        return label;
+    }
 }

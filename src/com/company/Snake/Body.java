@@ -1,4 +1,12 @@
 package com.company.Snake;
 
-public class Body {
+import com.company.GUI.Label;
+
+public class Body extends SnakeObject {
+    SnakeObject parent;
+    Label label;
+
+    public Body(SnakeObject p) {
+        super(p);
+    }
 }
