@@ -4,27 +4,35 @@ import com.company.GUI.GUI;
 import com.company.Snake.Snake;
 
 public class Clock extends Thread {
-    Snake snake;
-    PickUp pickUp;
+    public static Snake snake;
+    public static PickUp pickUp;
+    public boolean running = false;
 
     public Clock() {
-        snake = new Snake();
-        pickUp = new PickUp();
+        if (snake == null && pickUp == null) {
+            snake = new Snake();
+            pickUp = new PickUp();
+        }
+
         GUI.refresh();
     }
 
-    @Override
-    public void run() {
+    public void clock() {
         try {
-            while (!interrupted()) {
+            while (running) {
                 GUI.refresh();
                 snake.move();
                 GUI.refresh();
 
-                Thread.sleep(500);
+                Thread.sleep(300);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+
         }
+    }
+
+    @Override
+    public void run() {
+        clock();
     }
 }

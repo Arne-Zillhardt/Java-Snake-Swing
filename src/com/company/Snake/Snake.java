@@ -7,7 +7,7 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class Snake {
-    static ArrayList<SnakeObject> snake = new ArrayList<>();
+    public static ArrayList<SnakeObject> snake = new ArrayList<>();
     static Head snakeHead;
     static Label headLabel;
     public static int moveHorizontal = 1;
@@ -33,6 +33,7 @@ public class Snake {
 
         snakeHead.posX += moveVertical;
         snakeHead.posY += moveHorizontal;
+
         headLabel.snakeHead = false;
 
         headLabel = Label.getLabel(snakeHead.posX, snakeHead.posY);
@@ -47,5 +48,20 @@ public class Snake {
     public void add() {
         SnakeObject body = new SnakeObject(snake.get(snake.size() - 1));
         snake.add(body);
+    }
+
+    public void changeDirection(int x, int y) {
+        if (snake.size() > 1) {
+            int tmpX = snakeHead.posX + x;
+            int tmpY = snakeHead.posY + y;
+
+            if (tmpX != snake.get(1).posX || tmpY != snake.get(1).posY) {
+                moveVertical = x;
+                moveHorizontal = y;
+            }
+        } else {
+            moveVertical = x;
+            moveHorizontal = y;
+        }
     }
 }

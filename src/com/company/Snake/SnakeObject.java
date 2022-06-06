@@ -3,8 +3,8 @@ package com.company.Snake;
 import com.company.GUI.Label;
 
 public class SnakeObject {
-    int posX;
-    int posY;
+    public int posX;
+    public int posY;
     SnakeObject parent;
     Label label;
 

@@ -1,5 +1,6 @@
 package com.company.Game;
 
+import com.company.GUI.GUI;
 import com.company.GUI.Label;
 
 public class PickUp {
@@ -11,6 +12,10 @@ public class PickUp {
         posX = 8;
         posY = 13;
 
+        if (pickUpLabel != null) {
+            pickUpLabel.pickUp = false;
+        }
+
         pickUpLabel = Label.getLabel(posX, posY);
         pickUpLabel.pickUp = true;
     }
@@ -18,10 +23,7 @@ public class PickUp {
     public static void eaten() {
         pickUpLabel.pickUp = false;
 
-        posX = (int) (Math.random() * 17);
-        posY = (int) (Math.random() * 17);
-
-        pickUpLabel = Label.getLabel(posX, posY);
+        pickUpLabel = GUI.freeLabels.get(((int) (Math.random() * (GUI.freeLabels.size() - 1))));
         pickUpLabel.pickUp = true;
     }
 }
